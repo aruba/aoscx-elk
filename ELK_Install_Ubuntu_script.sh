@@ -132,15 +132,14 @@ elk()
 
 	git clone https://github.com/aruba/aoscx-elk.git 
 
-	`git branch --all | cut -d "/" -f3 > gitversion.txt`
+	cd /cxtools/aoscx-elk
+
+	`git branch --all | cut -d "/" -f3 > /cxtools/gitversion.txt`
 	echo -e "Enter a line number to select a branch:\n"
 	git branch --all | cut -d "/" -f3 | grep -n ''
 	read x
-	elkver=`sed "$x,1!d" gitversion.txt`
+	elkver=`sed "$x,1!d" /cxtools/gitversion.txt`
 	git checkout $elkver
-
-	cd /cxtools/aoscx-elk
-	##clear 
 
 	cp docker-compose.yml docker-compose.yml.orig
 	sed -i.bak  's/EF_OUTPUT_ELASTICSEARCH_ENABLE: '\''false'\''/EF_OUTPUT_ELASTICSEARCH_ENABLE: '\''true'\''/' docker-compose.yml
