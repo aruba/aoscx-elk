@@ -1,0 +1,17 @@
+{
+  "name": "<elastiflow-snap-{now/d}>",
+  "schedule": "0 30 0 * * ?",
+  "repository": "my_fs_backup",
+  "config": {
+    "indices": [
+      "elastiflow*"
+    ],
+    "ignore_unavailable": false,
+    "include_global_state": true,
+    "feature_states": [],
+    "partial": true
+  },
+  "retention": {
+    "expire_after": "7d"
+  }
+}

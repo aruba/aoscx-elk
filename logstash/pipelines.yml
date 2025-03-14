@@ -1,0 +1,4 @@
+- pipeline.id: dss_syslog
+  path.config: "/usr/share/logstash/pipeline/dss_syslog.conf"
+  # pipeline.id: psm_event
+  # path.config: "/usr/share/logstash/pipeline/psm_event.conf"
