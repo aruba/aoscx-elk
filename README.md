@@ -17,17 +17,18 @@ Optionally, a proxy server can be configured using the deployment script to enab
 
 To deploy the ELK Stack using this repository, first ensure that you are running an Ubuntu server instance (20.04, 22.04, or 24.04). If the installation procedure will be done remotely, ensure that OpenSSH is installed and functioning normally.
 
-If the deployment target requires a proxy server for internet connectivity and one was not already configured during operating system installation, set the HTTP_PROXY environment variable to the proxy server IP address or fully-qualified domain name using the following command:
+If the deployment target requires a proxy server for internet connectivity and one was not already configured during operating system installation, set the **http_proxy** and **https_proxy** environment variables to the proxy server IP address or fully-qualified domain name using the following commands:
 
     export http_proxy=http://[ip-or-hostname]:[listening-port]/
+    export https_proxy=http://[ip-or-hostname]:[listening-port]/
 
 Run the installation script using the following command:
 
     wget -O ./ELK_Install_Ubuntu_script.sh https://raw.githubusercontent.com/aruba/aoscx-elk/refs/heads/aoscx_10.15/ELK_Install_Ubuntu_script.sh && chmod +x ./ELK_Install_Ubuntu_script.sh && ./ELK_Install_Ubuntu_script.sh
 
-If proxy server configuration is required, select option "p" when prompted, and follow the instructions.
+If proxy server configuration is required, select option **"p"** when prompted, and follow the instructions.
 
-To start base system preparation select option "b". This will:
+To start base system preparation select option **"b"**. This will:
 
 1. Update installed operating system software packages to the latest available versions
 2. Install all prerequisites and dependencies for Docker and the ELK Stack components
@@ -38,7 +39,7 @@ Once the system is back up and running, run the script again from local storage:
 
     ./ELK_Install_Ubuntu_script.sh
 
-When prompted, select option "e" to start the ELK Stack deployment and configuration workflow. The script will connect to this GitHub repository and present a list of branches for each major revision to the application based on AOS-CX software releases; enter the line number for the desired application version.
+When prompted, select option **"e"** to start the ELK Stack deployment and configuration workflow. The script will connect to this GitHub repository and present a list of branches for each major revision to the application based on AOS-CX software releases; enter the line number for the desired application version.
 
 If you have an ElastiFlow license key to be used for the deployed application, enter the information when prompted.
 
@@ -50,7 +51,7 @@ To update a deployed instance of the HPE Aruba Networking CX ELK Stack platform,
 
     ./ELK_Install_Ubuntu_script.sh
 
-When prompted, select the "u" option to start the update process. This will:
+When prompted, select the **"u"** option to start the update process. This will:
 
 1. Stop all running Docker containers
 2. Update base operating system software packages to the latest available versions
