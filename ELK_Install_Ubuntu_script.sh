@@ -421,7 +421,7 @@ If base system preparation and reboot have been completed, select [E] to run the
 
 If the ELK Stack is already deployed and needs to be updated, select [U] to run the update workflow.\n" | fold -w 80 -s
 	
-	read -p "[B]ase system preparation, [E]LK Stack deployment, [U]pdate, [P]roxy configuration, or e[X]it: " x | fold -w 80 -s
+	read -p "[B]ase system preparation, [E]LK Stack deployment, [U]pdate, [P]roxy configuration, or e[X]it: " x
 
 	x=${x,,}
 
