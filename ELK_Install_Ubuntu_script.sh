@@ -192,14 +192,11 @@ After:\n"
 dockerup()
 {		
 	cd /cxtools/aoscx-elk/
-	echo -e "Setup in progress, please wait... (5%)\n"
-				
-	sleep 10 
+
+	echo -e "Starting ELK containers\n"
 			
 	docker compose up --detach
 	
-	echo -e "Setup in progress, please wait... (15%)\n"
-
 	echo -e "Waiting 100 seconds for services to start before configuration import...\n" | fold -w 80 -s
 	sleep 20
 	echo -e "80 seconds remaining...\n"
@@ -229,11 +226,7 @@ dockerup()
 	curl --silent --output /dev/null --show-error --fail --noproxy '*' -XPUT -H'Content-Type: application/json' 'http://localhost:9200/_ilm/policy/cx10000' -d @./elasticsearch/cx10k_ilm.json
 	curl --silent --output /dev/null --show-error --fail --noproxy '*' -XPUT -H'Content-Type: application/json' 'http://localhost:9200/_slm/policy/elastiflow' -d @./elasticsearch/elastiflow_slm.json
 	curl --silent --output /dev/null --show-error --fail --noproxy '*' -XPUT -H'Content-Type: application/json' 'http://localhost:9200/_ilm/policy/elastiflow' -d @./elasticsearch/elastiflow_ilm.json
-	
-	echo -e "Setup in progress, please wait... (70%)\n"
-						
-	sleep 10
-	
+		
 	echo -e "Deploying dashboard configuration...\n"
 
 	cx10kdash=`ls -t ./kibana/cx10k* | head -1`
@@ -241,9 +234,6 @@ dockerup()
 	curl --silent --output /dev/null --show-error --fail --noproxy '*' -X POST "http://localhost:5601/api/saved_objects/_import?overwrite=true" -H "kbn-xsrf: true" -H "securitytenant: global" --form file=@$cx10kdash
 	curl --silent --output /dev/null --show-error --fail --noproxy '*' -X POST "http://localhost:5601/api/saved_objects/_import?overwrite=true" -H "kbn-xsrf: true" -H "securitytenant: global" --form file=@$elastiflowdash
 	
-	echo -e "Setup in progress, please wait... (80%)\n"
-
-	sleep 20	
 }
 
 proxy()
