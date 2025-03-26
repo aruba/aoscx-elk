@@ -134,9 +134,9 @@ elk()
 
 	cd /cxtools/aoscx-elk
 
-	`git branch --all | cut -d "/" -f3 > /cxtools/gitversion.txt`
+	git branch --all | grep "aoscx" | cut -d "/" -f3 > /cxtools/gitversion.txt
 	echo -e "Enter a line number to select a branch:\n"
-	git branch --all | cut -d "/" -f3 | grep -n ''
+	git branch --all | grep "aoscx" | cut -d "/" -f3 | grep -n ''
 	read x
 	elkver=`sed "$x,1!d" /cxtools/gitversion.txt`
 	git checkout $elkver
@@ -344,9 +344,9 @@ upgrade()
 	
 	cd /cxtools/aoscx-elk
 	##clear 
-	git branch --all | cut -d "/" -f3 > gitversion.txt
-	echo -e "Enter a line number to select a branch to upgrade to:\n"
-	git branch --all | cut -d "/" -f3 |grep -n ''
+	git branch --all | grep "aoscx" | cut -d "/" -f3 > /cxtools/gitversion.txt
+	echo -e "Enter a line number to select a branch:\n"
+	git branch --all | grep "aoscx" | cut -d "/" -f3 | grep -n ''
 	read x
 	orig=`sed "1,1!d" gitversion.txt|cut -d ' ' -f 2`
 	elkver=`sed "$x,1!d" gitversion.txt`
